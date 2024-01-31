@@ -5,11 +5,11 @@ Cardiac trabeculae form a network of muscular strands that line the inner surfac
 ## Content
 
 ### 1. [Automated-fractal-analysis](https://github.com/ImperialCollegeLondon/trabecular_variants/tree/main/automated-fractal-analysis)
-Automated fractal analysis of segmented cardiac images using pre-exisiting image segmentations to determine a region of interest within the myocardium.
+Automated fractal analysis of segmented cardiac images using pre-existing image segmentations to determine a region of interest within the myocardium.
 
 ### 2. [Fractal-analysis-processing](https://github.com/ImperialCollegeLondon/trabecular_variants/tree/main/fractal-analysis-processing)
 Code for post-processing of fractal-analysis results including interpolation of FD values to a common number of slices across individuals, summary statistics of FD values per individual and a collection of functions for co-registration of myocardial and trabeculation outlines.
 
 ## Citation
 
-TBC
+McGurk et al. 2024 TBC
