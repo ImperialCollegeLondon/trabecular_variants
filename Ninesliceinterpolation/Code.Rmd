@@ -1,0 +1,36 @@
+---
+title: "Code"
+output: html_document
+---
+
+#Assuming steps 1 and 2 followed.
+#Assuming fracDecimateFD.R and summaryFD.R loaded in R
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(plyr)
+library(tidyr)
+library(ggpubr)
+set.seed(28061971)
+```
+
+#Nine slice interpolation
+
+```{r}
+#adapted from https://github.com/ImperialCollegeLondon/fractalgenetics/blob/master/UK-Biobank/phenotypes/preparePheno-discovery.r
+
+dataFD <- data.table::fread("Trabeculation.csv", data.table=FALSE, stringsAsFactors=FALSE, na.strings=c("NA", "NaN"), sep=",")
+rownames(dataFD) <- dataFD[, 1]
+colnames(dataFD)[colnames(dataFD) == 'FD - Slice 1'] <- 'Slice 1'
+dataFD <- dataFD[,grepl("Slice \\d{1,2}", colnames(dataFD))]
+colnames(dataFD) <- gsub(" ", "", colnames(dataFD))
+
+# Exclude individuals where less than 6 slices were measured
+NaN_values <- c("Sparse myocardium", "Meagre blood pool","FD measure failed", "")
+fd_notNA <- apply(dataFD, 1,  function(x) {length(which(!(is.na(x) | x %in% NaN_values))) > 5})
+dataFD <- dataFD[fd_notNA,]
+
+# interpolate FD slice measures
+FDi <- fracDecimate(data=dataFD, interpNoSlices=9, id.col.name='rownames', cut.off = 6)
+```
