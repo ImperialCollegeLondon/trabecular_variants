@@ -1,0 +1,31 @@
+---
+title: "PheWAS"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(plyr)
+library(tidyr)
+library(ggpubr)
+set.seed(28061971)
+```
+#phewas plot
+
+```{r}
+library(ggh4x)
+mid<-1
+
+ggplot(df, aes(x = snp, y = reorder(phenotype,-axis/count), fill=OR, shape=shape)) +
+  geom_point(size = 1.5, color="black") +
+scale_fill_gradient2(midpoint=mid, low="blue", mid="grey", high="red", space ="Lab" )+
+  theme_minimal()+
+  labs(x = "Imaging traits", y = "Phenotypes") +
+  theme(text = element_text(size = 8, family="sans"), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), panel.grid.major = element_line(size = 0.2, linetype = 'solid', colour = "grey80")) +
+    scale_x_discrete(limits = level_order)+
+  scale_shape_manual(values = c(25,24))+
+ facet_wrap(~category, ncol=1, scales = "free_y")+
+        force_panelsizes(rows = c(2.5, 0.2, 0.5, 0.2, 0.1, 0.1)) +
+  theme(panel.spacing = unit(0, "lines"))
+```
