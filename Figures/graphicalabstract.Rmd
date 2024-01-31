@@ -1,0 +1,60 @@
+---
+title: "graphicalabstract"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(plyr)
+library(tidyr)
+library(ggpubr)
+set.seed(28061971)
+```
+
+# distribution plot
+
+```{r}
+gc()
+
+slices <- read.table("trabeculation_interpolated_adjusted.txt", header=T, sep="\t")
+library(see)
+library(reshape2)
+df <- melt(slices)
+df$variable <- gsub("_", " ", df$variable)
+
+ggplot(df, aes(variable, value, fill = variable)) +
+geom_violinhalf(position = position_nudge(x = .2, y = 0)) +
+geom_jitter(alpha = 0.01, width = 0.15) +
+theme(legend.position = "none")+
+theme_minimal()+
+    theme(text = element_text(size=20), axis.text.x = element_blank(), axis.title.x= element_text(size=20), axis.text.y = element_text(family="sans", color="black", size=20)) +
+     theme(text = element_text(size=20, family="sans", color="black"), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="none") +
+  ylab("Measured fractal dimension") + xlab("Image slices 1-9")+
+  annotate(geom="text", x=2, y=0.85, label="Basal", size=7, family="sans", color="black") +
+  annotate(geom="text", x=5, y=0.85, label="Mid", size=7, family="sans", color="black") +
+  annotate(geom="text", x=8, y=0.85, label="Apical", size=7, family="sans", color="black")
+```
+# ancestry plot
+
+```{r}
+slices <- read.table("trabeculation_interpolated_adjusted.txt", header=T, sep="\t")
+ance <- read.table("ukbSRancestry.txt", header=T, sep="\t") #self reported ancestry column
+test <- plyr::join(final3, ance, type="left", by="eid")
+
+library(ggpubr)
+
+hmm <- test[test$my_ukb_58.ethnic_background_f21000_0_0 == "British" |
+              test$my_ukb_58.ethnic_background_f21000_0_0 == "African" |
+              test$my_ukb_58.ethnic_background_f21000_0_0 == "Chinese",]
+
+ggplot(hmm, aes(x = MeanGlobalFD))+
+geom_histogram(aes(y = after_stat(density), color = Ancestry), 
+                   fill = "white",
+                   position = "identity", bins=20)+
+  geom_density(aes(color = Ancestry), linewidth = 1) +
+  scale_color_manual(values = c("red", "#868686FF", "#EFC000FF"))+
+  theme_classic(base_size =16) +
+    theme(text = element_text(size=16, family="sans", color="black"), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="top") +
+  ylab(NULL)
+```
