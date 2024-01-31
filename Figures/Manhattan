@@ -1,0 +1,22 @@
+---
+title: "Manhattan"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(plyr)
+library(tidyr)
+library(ggpubr)
+set.seed(28061971)
+```
+# circular manhattan plot
+
+```{r}
+df <- read.table("minsnps_meta_minP_GWAS.txt", sep="\t", header=T) #minimum P value SNPs
+library(CMplot)
+CMplot(df)
+SNPs <-  df[df$P < 5e-8, 1]
+CMplot(df, plot.type="c", r=1, outward=TRUE, cir.chr.h=.2, chr.den.col=c("darkblue"), file="pdf", dpi=300, chr.labels=seq(1,22), col=c("grey","darkblue"), threshold=c(5e-8), signal.line=1, threshold.col=c("darkblue"), cex = .5, signal.cex=.5, highlight.col="darkgreen", highlight.cex=0.5, highlight.pch=19, LOG10=TRUE, highlight=SNPs, highlight.type="h", threshold.lty=2, threshold.lwd=1)
+```
