@@ -19,7 +19,7 @@ mid<-1
 
 ggplot(df, aes(x = snp, y = reorder(phenotype,-axis/count), fill=OR, shape=shape)) +
   geom_point(size = 1.5, color="black") +
-scale_fill_gradient2(midpoint=mid, low="blue", mid="grey", high="red", space ="Lab" )+
+scale_fill_gradient2(midpoint=mid, low="blue", mid="grey", high="red", space ="Lab")+
   theme_minimal()+
   labs(x = "Imaging traits", y = "Phenotypes") +
   theme(text = element_text(size = 8, family="sans"), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), panel.grid.major = element_line(size = 0.2, linetype = 'solid', colour = "grey80")) +
