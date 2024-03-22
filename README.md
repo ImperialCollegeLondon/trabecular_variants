@@ -12,4 +12,4 @@ Code for post-processing of fractal-analysis results including interpolation of 
 
 ## Citation
 
-McGurk et al. 2024 TBC
+McGurk KA, Qiao M, Zheng SL, Sau A, Henry A, Ribeiro ALP, Ribeiro AH, Ng F, Lumbers RT, Bai W, Ware JS, O'Regan DP. Genetic and phenotypic architecture of human myocardial trabeculation. _medRxiv_. 2024
