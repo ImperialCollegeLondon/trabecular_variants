@@ -10,7 +10,7 @@ Automated fractal analysis of segmented cardiac images using pre-existing image 
 ### 2. [Fractal-analysis-processing](https://github.com/ImperialCollegeLondon/trabecular_variants/tree/main/fractal-analysis-processing)
 Code for post-processing of fractal-analysis results including interpolation of FD values to a common number of slices across individuals, summary statistics of FD values per individual and a collection of functions for co-registration of myocardial and trabeculation outlines.
 
-### 3. [UK-Biobank](https://github.com/ImperialCollegeLondon/trabecular_genetics)
+### 3. [UK-Biobank](https://github.com/ImperialCollegeLondon/trabecular_variants/Figures)
 Code for figures and interpolation used in the paper.
 
 ## Citation
