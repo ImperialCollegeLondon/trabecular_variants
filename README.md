@@ -13,7 +13,7 @@ Code for post-processing of fractal-analysis results including interpolation of 
 ### 3. [Nine-slice-interpolation](https://github.com/ImperialCollegeLondon/trabecular_variants/tree/main/Ninesliceinterpolation)
 Code for interpolation used in the paper.
 
-### 3. [Figures](https://github.com/ImperialCollegeLondon/trabecular_variants/tree/main/Figures)
+### 4. [Figures](https://github.com/ImperialCollegeLondon/trabecular_variants/tree/main/Figures)
 Code for figures and interpolation used in the paper.
 
 ## Citation
